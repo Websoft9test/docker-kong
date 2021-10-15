@@ -88,7 +88,7 @@ The following is the information that may be needed during use
 | Service | Port | Use |  Necessity |
 | --- | --- | --- | --- |
 | postgresql | 5432 | Accessing PostgreSQL database with TCP | Y |
-| kong | 9001 | Browser access to Kong by Http | Y |
+| kong | 9003 | Browser access to Kong by Http | Y |
 ## Documentation
 
 [Kong Administrator Guide](https://support.websoft9.com/docs/kong)
