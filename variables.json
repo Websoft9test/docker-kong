@@ -24,7 +24,7 @@
     },
     {
       "name": "kong",
-      "port": "9001",
+      "port": "9003",
       "description_cn": "浏览器访问Kong可视化web界面Konga",
       "description_en": "Browser access to Kong by Http",
       "required": "Y"
