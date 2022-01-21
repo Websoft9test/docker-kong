@@ -95,7 +95,7 @@ sudo docker-compose up -d
 | 名称 | 端口号 | 用途 |  必要性 |
 | --- | --- | --- | --- |
 | postgresql | 5432 | TCP 访问PostgreSQL数据库 | Y |
-| kong | 9003 | 浏览器访问Kong可视化web界面Konga | Y |
+| kong | 9001 | 浏览器访问Kong可视化web界面Konga | Y |
 ## 文档
 
 [Kong 管理员手册](https://support.websoft9.com/docs/kong)
