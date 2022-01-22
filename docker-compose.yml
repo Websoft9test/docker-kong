@@ -16,7 +16,7 @@ services:
       - "postgres:/var/lib/postgresql/data"
 
   kong-migrations:
-    image: kong
+    image: kong:$APP_VERSION
     environment:
       - KONG_DATABASE=postgres
       - KONG_PG_HOST=$DB_POSTGRES_HOST
