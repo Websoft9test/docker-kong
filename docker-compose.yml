@@ -2,10 +2,10 @@ version: '3.8'
 
 services:
 
-  kong-database:
+  postgres:
     image: postgres:$DB_POSTGRES_VERSION
     restart: always
-    container_name: $APP_CONTAINER_NAME-database
+    container_name: $APP_NAME-postgres
     ports:
       - "$DB_POSTGRES_PORT:5432"
     environment:
@@ -13,7 +13,7 @@ services:
       - POSTGRES_DB=$DB_POSTGRES_NAME
       - POSTGRES_PASSWORD=$DB_POSTGRES_PASSWORD
     volumes:
-      - "kong-postgres:/var/lib/postgresql/data"
+      - "postgres:/var/lib/postgresql/data"
 
   kong-migrations:
     image: kong
@@ -25,11 +25,11 @@ services:
     command: kong migrations bootstrap
     restart: on-failure
     depends_on:
-      - kong-database
+      - postgres
 
   kong:
     image: kong:$APP_VERSION
-    container_name: $APP_CONTAINER_NAME
+    container_name: $APP_NAME
     environment:
       - LC_CTYPE=en_US.UTF-8
       - LC_ALL=en_US.UTF-8
@@ -50,24 +50,24 @@ services:
       - 8001:8001
       - 8444:8444
     links:
-      - kong-database:kong-database
+      - postgres
     depends_on:
       - kong-migrations
 
   konga:
     image: pantsel/konga
+    container_name: $APP_NAME-konga
     ports:
       - "$APP_PORT:1337"
     links:
-      - kong:kong
-    container_name: $APP_CONTAINER_NAME-konga
+      - kong
     restart: always
     environment:
       - NODE_ENV=production
 
 volumes:
-  kong-postgres:
+  postgres:
 
 networks:
   default:
-      name: "$APP_NETWORK"
+      name: "$APP_NAME"
