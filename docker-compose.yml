@@ -34,7 +34,7 @@ services:
     image: pantsel/konga
     container_name: ${APP_NAME}-konga
     ports:
-      - "${APP_PORT}:1337"
+      - "${APP_HTTP_PORT}:1337"
     links:
       - kong
     restart: always
